@@ -1046,6 +1046,47 @@ section {
     animation: pulse 2.5s infinite;
 }
 
+/* ===== Promotional Video Section ===== */
+.promo-video {
+    background: linear-gradient(135deg, rgba(0, 188, 212, 0.05), rgba(76, 175, 80, 0.05));
+    padding: var(--spacing-2xl) 0;
+}
+
+.video-container {
+    max-width: 900px;
+    margin: 0 auto;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    background: var(--white);
+    padding: var(--spacing-sm);
+}
+
+.promo-video-player {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: var(--transition-normal);
+}
+
+.promo-video-player:hover {
+    transform: scale(1.01);
+}
+
+/* Responsive video */
+@media (max-width: 768px) {
+    .video-container {
+        max-width: 100%;
+        padding: var(--spacing-xs);
+    }
+
+    .promo-video {
+        padding: var(--spacing-xl) 0;
+    }
+}
+
 /* ===== Footer ===== */
 .footer {
     background: linear-gradient(135deg, var(--accent-ocean) 0%, var(--accent-teal) 100%);

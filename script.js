@@ -616,6 +616,60 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('✅ All components loaded successfully');
 });
 
+// ===== Promotional Video Controller =====
+class PromoVideoController {
+    constructor() {
+        this.video = document.getElementById('promoVideo');
+        this.init();
+    }
+
+    init() {
+        if (!this.video) return;
+
+        // Create Intersection Observer for auto-play/pause
+        const observerOptions = {
+            threshold: 0.5, // Video must be 50% visible
+            rootMargin: '0px'
+        };
+
+        this.observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Video is in view - play it
+                    this.video.play().catch(err => {
+                        console.log('Auto-play prevented:', err);
+                    });
+                } else {
+                    // Video is out of view - pause it
+                    this.video.pause();
+                }
+            });
+        }, observerOptions);
+
+        // Start observing the video
+        this.observer.observe(this.video);
+
+        // Handle user interaction
+        this.video.addEventListener('click', () => {
+            if (this.video.paused) {
+                this.video.play();
+            } else {
+                this.video.pause();
+            }
+        });
+    }
+}
+
+// Initialize video controller after DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        new PromoVideoController();
+    });
+} else {
+    new PromoVideoController();
+}
+
+
 // ===== Service Worker Registration (Optional for PWA) =====
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
